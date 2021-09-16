@@ -13,17 +13,28 @@ import { initialState } from './assets/state';
 function App() {
 
   const [items, setItems] = useState(initialState.items);
-  const [cartItems, setCartItems] = useState(initialState.cartItems);
+  const [cartItems, setCartItems] = useState([]);
 
+
+  const handleClick = (e, id) => {
+    const newItem = items.filter((el) => el.id === id);
+    newItem[0].quantity = 1;
+    setCartItems([...cartItems].concat(newItem))
+    console.log(cartItems);
+  }
+
+  const handleDelete = (itemId) => {
+    setCartItems(cartItems.filter((el) => el.id !== itemId))
+  }
   return (
     <Router>
-      <Nav />
+      <Nav cartItems={cartItems}/>
       <Switch>
         <Route exact={true} path="/">
-          <ItemListContainer items={items} />
+          <ItemListContainer items={items} handleClick={handleClick}/>
         </Route>
         <Route path="/shoppingcart">
-          <ShoppingCart cartItems={cartItems} items={items} />
+          <ShoppingCart cartItems={cartItems} items={items} handleDelete={handleDelete}/>
         </Route>
       </Switch>
     </Router>

@@ -1,8 +1,8 @@
 import React from 'react';
 import Item from '../components/Item';
 
-function ItemListContainer({ items }) {
-  const handleClick = () => { }
+function ItemListContainer({ items, handleClick }) {
+  // const handleClick = () => { } //클릭이벤트 구현 -> 클릭하면 shoppingcart페이지에 아이템이 추가되어야 함
   return (
     <div id="item-list-container">
       <div id="item-list-body">

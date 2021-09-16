@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export default function CartItem({
   item,
@@ -6,7 +6,8 @@ export default function CartItem({
   handleCheckChange,
   handleQuantityChange,
   handleDelete,
-  quantity
+  quantity,
+  isQuantity
 }) {
   return (
     <li className="cart-item-body">
@@ -29,7 +30,7 @@ export default function CartItem({
         type="number"
         min={1}
         className="cart-item-quantity"
-        value={quantity}
+        defaultValue={quantity ? quantity : 1}
         onChange={(e) => {
           handleQuantityChange(Number(e.target.value), item.id)
         }}>
